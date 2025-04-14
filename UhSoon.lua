@@ -1,4 +1,4 @@
-print("soon?")
+print("Soon...")
 --[[
 just ignore this
 ]]--
