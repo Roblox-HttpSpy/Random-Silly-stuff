@@ -1,5 +1,3 @@
---// checks if the owner or a mod is in game
-loadstring(game:HttpGet("https://pastefy.app/SuMa2sxD/raw"))()
 --// credit to IceMinisterq for the notification library
 local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMinisterq/Notification-Library/Main/Library.lua"))()
 NotificationLibrary:SendNotification("Info", "Silly Panel made by https :p *bleh*~", 10)
