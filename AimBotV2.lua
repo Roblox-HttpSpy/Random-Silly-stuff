@@ -8,7 +8,7 @@ modified it (snaps camera) and tada! heres the script,
 this is the game i was talking about btw = https://www.roblox.com/games/12137249458/FPS-Gun-Grounds-FFA
 
 AimBotV2 : made it bypass Anticheats like one ins unnamed shooter
-but... your executor gonna support a good cloneref() so if this script breaks
+but... your executor gonna neeed to support a good cloneref() so if this script breaks
 scroll down and copy v1 AimBot NOTE YOU WONT HAVE THE ANTICHEAT BYPASSING
 ]]--
 
