@@ -89,7 +89,7 @@ local function createButton(name)
 	local normalSize = btn.Size
 	local hoverSize = UDim2.new(0, 180, 0, 55)
 	local clickSize = UDim2.new(0, 160, 0, 45)
---// small ui details
+        --// small ui details
 	local function tweenSize(targetSize, time)
 		TweenService:Create(btn, TweenInfo.new(time, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = targetSize}):Play()
 	end
@@ -195,7 +195,7 @@ end)
 local btn1 = createButton("AntiCheat Bypasser its already running in the background")
 local btn2 = createButton("OP Sword Reach V3")
 local btn3 = createButton("Nameless-Admin (Better then IY)")
-local btn4 = createButton("OPFinality, just a script you can use to troll poeple lol [Recommend to use AntiCheat Bypasser]")
+local btn4 = createButton("OPFinality, just a script you can use to troll poeple lol")
 local btn5 = createButton("Teleporter (May or May not work, Atleast go UnderGround)")
 local btn6 = createButton("Delete All Dirt (Client-Sided)")
 local btn7 = createButton("Join Our Discord :3")
