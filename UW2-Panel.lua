@@ -202,7 +202,7 @@ local btn7 = createButton("Join Our Discord :3")
 local btn8 = createButton("Sniper AimBot V2 [Click On Options after execution] ")
 --// and add function to said buttons
 btn1.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/UW2-AnticheatBypasser.lua"))() end)
-btn2.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/yhVOHzjp/raw"))() end) -- old version (V2) https://pastefy.app/unXq4J5u/raw
+btn2.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/UYGTIIRH/raw"))() end) -- old version (V3) https://pastefy.app/yhVOHzjp/raw / this is (V2) https://pastefy.app/unXq4J5u/raw
 btn3.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"))() end)
 btn4.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://rawscripts.net/raw/OpFinality_590"))() end)
 btn5.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/83YCFeyG/raw"))() end)
