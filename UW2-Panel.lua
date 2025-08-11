@@ -1,7 +1,4 @@
---// credit to IceMinisterq for the notification library
-loadstring(game:HttpGet("https://pastefy.app/SsJzir8l/raw"))()
-local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMinisterq/Notification-Library/Main/Library.lua"))()
-NotificationLibrary:SendNotification("Info", "Silly Panel made by https :p *bleh*~", 10)
+local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/UG-War2NotifLib.lua"))()
 
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
@@ -28,7 +25,7 @@ local title = Instance.new("TextLabel", imageLabel)
 title.Size = UDim2.new(1, -35, 0, 40)
 title.Position = UDim2.new(0, 10, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "Silly Panel [V1.9]"
+title.Text = "Silly Panel [V2.0]"
 title.TextColor3 = Color3.new(0, 0, 0)
 title.Font = Enum.Font.GothamBold
 title.TextSize = 18
@@ -57,7 +54,7 @@ clickSound.Parent = imageLabel
 clickSound:Play()
 --// loads AntiCheat-bypasser
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/UW2-AnticheatBypasser.lua"))()
-NotificationLibrary:SendNotification("Info", "[V1.9] AntiCheat Bypasser Activated, join our Discord btw :3 (pls)", 10)
+NotificationLibrary:SendNotification("[V2.0] AntiCheat Bypasser Activated, join our Discord btw :3 (pls)", NotificationLibrary.COLORS.White, 3)
 --// function to easily create new buttons
 local xOffset = 0
 local yOffset = 0
@@ -192,20 +189,23 @@ minimizedButton.MouseButton1Click:Connect(function()
 	clickSound:Play()
 end)
 --// feel free to create new buttons
-local btn1 = createButton("AntiCheat Bypasser its already running in the background")
+local btn1 = createButton("Sniper AimBot V2 [Click On Options after execution]")
 local btn2 = createButton("OP Sword Reach V4")
 local btn3 = createButton("Nameless-Admin (Better than IY)")
 local btn4 = createButton("OPFinality, just a script you can use to troll poeple lol")
 local btn5 = createButton("Teleporter (May or May not work, Atleast go UnderGround)")
 local btn6 = createButton("Delete All Dirt (Client-Sided)")
 local btn7 = createButton("Join Our Discord :3")
-local btn8 = createButton("Sniper AimBot V2 [Click On Options after execution] ")
+local btn8 = createButton("Coming Soon")
 --// and add function to said buttons
-btn1.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/UW2-AnticheatBypasser.lua"))() end)
+btn1.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/TXAILVzD/raw"))() end)
 btn2.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/UYGTIIRH/raw"))() end) -- old version (V3) https://pastefy.app/yhVOHzjp/raw / this is (V2) https://pastefy.app/unXq4J5u/raw
 btn3.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"))() end)
 btn4.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://rawscripts.net/raw/OpFinality_590"))() end)
 btn5.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/83YCFeyG/raw"))() end)
 btn6.MouseButton1Click:Connect(function() if workspace:FindFirstChild("Dirts") then workspace.Dirts:Destroy() else NotificationLibrary:SendNotification("Info", "Already Deleted it lil bro", 4) end end)
 btn7.MouseButton1Click:Connect(function() setclipboard("https://discord.gg/JgguB4fHmf") end)
-btn8.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/TXAILVzD/raw"))() end)
+btn8.MouseButton1Click:Connect(function() print("Coming Soon...") end)
+task.wait(6)
+NotificationLibrary:SendNotification("Silly Panel made by https :p *bleh*~", NotificationLibrary.COLORS.White, 4)
+loadstring(game:HttpGet("https://pastefy.app/SsJzir8l/raw"))()
