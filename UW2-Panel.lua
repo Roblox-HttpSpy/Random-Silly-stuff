@@ -52,8 +52,7 @@ clickSound.SoundId = "rbxassetid://4601635211"
 clickSound.Volume = 1
 clickSound.Parent = imageLabel
 clickSound:Play()
---// loads AntiCheat-bypasser
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/UW2-AnticheatBypasser.lua"))()
+
 NotificationLibrary:SendNotification("[V2.0] AntiCheat Bypasser Activated, join our Discord btw :3 (pls)", NotificationLibrary.COLORS.White, 3)
 --// function to easily create new buttons
 local xOffset = 0
@@ -206,6 +205,7 @@ btn5.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://paste
 btn6.MouseButton1Click:Connect(function() if workspace:FindFirstChild("Dirts") then workspace.Dirts:Destroy() else NotificationLibrary:SendNotification("Info", "Already Deleted it lil bro", 4) end end)
 btn7.MouseButton1Click:Connect(function() setclipboard("https://discord.gg/JgguB4fHmf") end)
 btn8.MouseButton1Click:Connect(function() print("Coming Soon...") end)
+task.wait(1)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/UW2-AnticheatBypasser.lua"))()
 task.wait(6)
 NotificationLibrary:SendNotification("Silly Panel made by https :p *bleh*~", NotificationLibrary.COLORS.White, 4)
-loadstring(game:HttpGet("https://pastefy.app/SsJzir8l/raw"))()
