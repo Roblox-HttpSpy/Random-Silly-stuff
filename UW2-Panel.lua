@@ -195,7 +195,7 @@ local btn4 = createButton("OPFinality, just a script you can use to troll poeple
 local btn5 = createButton("Teleporter (May or May not work, Atleast go UnderGround)")
 local btn6 = createButton("Delete All Dirt (Client-Sided)")
 local btn7 = createButton("Join Our Discord :3")
-local btn8 = createButton("Coming Soon")
+local btn8 = createButton("Auto-Use latest Code")
 --// and add function to said buttons
 btn1.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/TXAILVzD/raw"))() end)
 btn2.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/UYGTIIRH/raw"))() end) -- old version (V3) https://pastefy.app/yhVOHzjp/raw / this is (V2) https://pastefy.app/unXq4J5u/raw
@@ -204,7 +204,7 @@ btn4.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://rawsc
 btn5.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/83YCFeyG/raw"))() end)
 btn6.MouseButton1Click:Connect(function() if workspace:FindFirstChild("Dirts") then workspace.Dirts:Destroy() else NotificationLibrary:SendNotification("Info", "Already Deleted it lil bro", 4) end end)
 btn7.MouseButton1Click:Connect(function() setclipboard("https://discord.gg/JgguB4fHmf") end)
-btn8.MouseButton1Click:Connect(function() print("Coming Soon...") end)
+btn8.MouseButton1Click:Connect(function() local Plr = game:GetService("Players").LocalPlayer.PlayerGui.Menus:WaitForChild("Codes").Frame ; local text, code = Plr.TextBox, Plr.Previous.Text ; text.Text = code ; firesignal(text.FocusLost) end)
 task.wait(1)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/UW2-AnticheatBypasser.lua"))()
 task.wait(6)
