@@ -25,7 +25,7 @@ local title = Instance.new("TextLabel", imageLabel)
 title.Size = UDim2.new(1, -35, 0, 40)
 title.Position = UDim2.new(0, 10, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "Silly Panel [V2.0]"
+title.Text = "Silly Panel [V2.1]"
 title.TextColor3 = Color3.new(0, 0, 0)
 title.Font = Enum.Font.GothamBold
 title.TextSize = 18
@@ -53,7 +53,7 @@ clickSound.Volume = 1
 clickSound.Parent = imageLabel
 clickSound:Play()
 
-NotificationLibrary:SendNotification("[V2.0] AntiCheat Bypasser Activated, join our Discord btw :3 (pls)", NotificationLibrary.COLORS.White, 3)
+NotificationLibrary:SendNotification("[V2.1] / AntiCheat Bypasser Activated, join our Discord btw :3 (pls)", NotificationLibrary.COLORS.White, 3)
 --// function to easily create new buttons
 local xOffset = 0
 local yOffset = 0
