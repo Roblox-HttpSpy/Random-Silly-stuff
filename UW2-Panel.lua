@@ -189,7 +189,7 @@ minimizedButton.MouseButton1Click:Connect(function()
 end)
 --// feel free to create new buttons
 local btn1 = createButton("Sniper AimBot V2 [Click On Options after execution]")
-local btn2 = createButton("OP Sword Reach V4")
+local btn2 = createButton("OP Sword Reach")
 local btn3 = createButton("Nameless-Admin")
 local btn4 = createButton("OPFinality, just a script you can use to troll poeple lol")
 local btn5 = createButton("Teleporter (May or May not work, Atleast go UnderGround)")
@@ -198,7 +198,7 @@ local btn7 = createButton("Join Our Discord :3")
 local btn8 = createButton("Coming Soon...")
 --// and add function to said buttons
 btn1.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/TXAILVzD/raw"))() end)
-btn2.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/UYGTIIRH/raw"))() end) -- old version (V3) https://pastefy.app/yhVOHzjp/raw / this is (V2) https://pastefy.app/unXq4J5u/raw
+btn2.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/oajIABZZ/raw"))() end)
 btn3.MouseButton1Click:Connect(function() NotificationLibrary:SendNotification("if your on Mobile and you wanna use fly do [mfly] in command bar", NotificationLibrary.COLORS.White, 4) ; loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source"))(); end)
 btn4.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://rawscripts.net/raw/OpFinality_590"))() end)
 btn5.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/83YCFeyG/raw"))() end)
