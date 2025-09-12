@@ -53,7 +53,7 @@ clickSound.Volume = 1
 clickSound.Parent = imageLabel
 clickSound:Play()
 
-NotificationLibrary:SendNotification("[V2.1] / AntiCheat Bypasser Activated, join our Discord btw :3 (pls)", NotificationLibrary.COLORS.White, 3)
+NotificationLibrary:SendNotification("[V2.2] / AntiCheat Bypasser Activated, join our Discord btw :3 (pls)", NotificationLibrary.COLORS.White, 3)
 --// function to easily create new buttons
 local xOffset = 0
 local yOffset = 0
