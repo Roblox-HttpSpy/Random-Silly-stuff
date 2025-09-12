@@ -29,8 +29,8 @@ local mouse = player:GetMouse();
 local run = game:GetService('RunService');
 local stepped = run.Stepped;
 
-local function HideUI(UI: string): GuiBase
-    return gethui() or game:GetService("CoreGui").RobloxGui or game:GetService("Players").PlayerGui
+local function HideUI(UI)
+    UI.Parent = gethui() or game:GetService("CoreGui").RobloxGui or game:GetService("Players").PlayerGui
 end
 
 local TurtleUiLib = Instance.new("ScreenGui")
