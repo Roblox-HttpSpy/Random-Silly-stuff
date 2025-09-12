@@ -25,7 +25,7 @@ local title = Instance.new("TextLabel", imageLabel)
 title.Size = UDim2.new(1, -35, 0, 40)
 title.Position = UDim2.new(0, 10, 0, 0)
 title.BackgroundTransparency = 1
-title.Text = "Silly Panel [V2.1]"
+title.Text = "Silly Panel [V2.2]"
 title.TextColor3 = Color3.new(0, 0, 0)
 title.Font = Enum.Font.GothamBold
 title.TextSize = 18
@@ -191,7 +191,7 @@ end)
 local btn1 = createButton("Sniper AimBot V2 [Click On Options after execution]")
 local btn2 = createButton("OP Sword Reach")
 local btn3 = createButton("Nameless-Admin")
-local btn4 = createButton("OPFinality, just a script you can use to troll poeple lol")
+local btn4 = createButton("AutoKill-Farm")
 local btn5 = createButton("Teleporter (May or May not work, Atleast go UnderGround)")
 local btn6 = createButton("Delete All Dirt (Client-Sided)")
 local btn7 = createButton("Join Our Discord :3")
@@ -200,7 +200,7 @@ local btn8 = createButton("Coming Soon...")
 btn1.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/TXAILVzD/raw"))() end)
 btn2.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/oajIABZZ/raw"))() end)
 btn3.MouseButton1Click:Connect(function() NotificationLibrary:SendNotification("if your on Mobile and you wanna use fly do [mfly] in command bar", NotificationLibrary.COLORS.White, 4) ; loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source"))(); end)
-btn4.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://rawscripts.net/raw/OpFinality_590"))() end)
+btn4.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/UW2-AutoKillFarm.lua"))() end)
 btn5.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/83YCFeyG/raw"))() end)
 btn6.MouseButton1Click:Connect(function() if workspace:FindFirstChild("Dirts") then workspace.Dirts:Destroy() else NotificationLibrary:SendNotification("Info", "Already Deleted it lil bro", 4) end end)
 btn7.MouseButton1Click:Connect(function() setclipboard("https://discord.gg/JgguB4fHmf") end)
