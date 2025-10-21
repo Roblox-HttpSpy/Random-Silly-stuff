@@ -191,14 +191,14 @@ end)
 local btn1 = createButton("Sniper AimBot V2 [Click On Options after execution]")
 local btn2 = createButton("OP Sword Reach")
 local btn3 = createButton("Nameless-Admin")
--- local btn4 = createButton("AutoKill-Farm") / detected
+-- local btn4 = createButton("AutoKill-Farm") / remaking
 local btn5 = createButton("Teleporter (May or May not work, Atleast go UnderGround)")
 local btn6 = createButton("Delete All Dirt (Client-Sided)")
 local btn7 = createButton("Join Our Discord :3")
 local btn8 = createButton("Coming Soon...")
 --// and add function to said buttons
 btn1.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/TXAILVzD/raw"))() end)
-btn2.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/6EdyyCWz/raw"))() end)
+btn2.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/UW-SwordReach.luau"))() end)
 btn3.MouseButton1Click:Connect(function() NotificationLibrary:SendNotification("if your on Mobile and you wanna use fly do [mfly] in command bar", NotificationLibrary.COLORS.White, 4) ; loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source"))(); end)
 -- btn4.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/UW2-AutoKillFarm.lua"))() end)
 btn5.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastefy.app/83YCFeyG/raw"))() end)
