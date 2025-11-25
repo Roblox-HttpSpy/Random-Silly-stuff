@@ -207,3 +207,17 @@ task.wait(6)
 NotificationLibrary:SendNotification("Silly Panel made by https :p *bleh*~", NotificationLibrary.COLORS.White, 4)
 task.wait(3)
 pcall(function() local Plr = game:GetService("Players").LocalPlayer.PlayerGui.Menus:WaitForChild("Codes").Frame ; local text, code = Plr.TextBox, Plr.Previous.Text ; text.Text = code ; firesignal(text.FocusLost) end)
+task.wait(6)
+
+local CoreGuiModules = game:GetService("CoreGui").RobloxGui.Modules
+local PromptCreator = require(CoreGuiModules.PromptCreator)
+local rn = math.random
+
+PromptCreator:CreatePrompt({
+	WindowTitle = "SillyPanel",
+	MainText = ":SCROLL UP & DOWN: -- this script is no longer maintained for the time bieng, it has been deprecated, so some stuff may have already been patched out or no longer work, _____________",
+	ConfirmationText = "Okey",
+	CancelActive = false,
+	Image = "rbxassetid://10245993691",
+	StripeColor = Color3.fromRGB(rn(0, 255), rn(0, 255), rn(0, 255)),
+})
