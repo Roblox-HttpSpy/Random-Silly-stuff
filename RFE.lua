@@ -272,7 +272,6 @@ local fullsize = UDim2.new(0, 438, 0, 277)
 local minimizedsize = UDim2.new(0, 438, 0, 30)
 
 exitbutton.MouseButton1Click:Connect(function()
-	rootframe:Destroy()
 	screengui:Destroy()
 end)
 
@@ -370,3 +369,4 @@ else
 	rfestatuslabel.Text = "RespectFilteringEnabled(RFE) : unknown? wait what-"
 
 end
+
