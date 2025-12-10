@@ -9,12 +9,13 @@ of you gonna showcase this version of the script make sure to credit me (https) 
 local players = game:GetService("Players")
 local soundservice = game:GetService("SoundService")
 local startergui = game:GetService("StarterGui")
+local work = workspace
 
 local defaultwaittime = 0.5
 local notificationsoundid = "rbxassetid://9086208751"
 
 local function getallsounds()
-	return workspace:QueryDescendants(">>Sound")
+	return work:QueryDescendants(">>Sound")
 end
 
 local function HideGui()
@@ -367,4 +368,5 @@ elseif rfesetting == false then
 else
 	rfestatuslabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	rfestatuslabel.Text = "RespectFilteringEnabled(RFE) : unknown? wait what-"
+
 end
