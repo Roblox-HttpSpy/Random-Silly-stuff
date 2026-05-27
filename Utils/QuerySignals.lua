@@ -68,7 +68,7 @@ return QuerySignals
 	HOW TO USE:
 	
 	:1: FETCH SCRIPT
-	local QuerySignals = loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/Utils/QuerySignals.lua")()
+	local QuerySignals = loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/Utils/QuerySignals.lua"))()
 	
 	:2: USE IT DIRECTLY
 	QuerySignals(workspace)
