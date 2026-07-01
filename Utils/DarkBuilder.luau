@@ -78,12 +78,12 @@ local THEME = table.freeze({
 })
 local FONT = Enum.Font.BuilderSansExtraBold
 
-if CoreGui:FindFirstChild("DarkCheats") then
+if CoreGui:FindFirstChild("") then
 	CoreGui.DarkCheats:Destroy()
 end
 
 local ScreenGui = Instance.new("ScreenGui", CoreGui)
-ScreenGui.Name = ""
+ScreenGui.Name = ""
 ScreenGui.ResetOnSpawn = false
 ScreenGui.IgnoreGuiInset = true
 
