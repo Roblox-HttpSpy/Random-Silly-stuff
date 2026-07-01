@@ -45,7 +45,7 @@ DarkBuilder:CreateButton("TELEPORT TO SPAWN", function()
 end)
 
 ==== HOW TO LOAD UILIB ====
-local DarkBuilder = loadstring()()
+local DarkBuilder = loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/Utils/DarkBuilder.luau"))()
 DarkBuilder:CreateSwitch("example", false, function(state)
 	print(state)
 end)
