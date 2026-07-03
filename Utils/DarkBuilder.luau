@@ -34,7 +34,7 @@ the bubble that is used for the minimized mode of the UI
 (btw to minimize tap/click anywhere on the UI outside the place that has the elements like title to minimize the UI)
 
 [ FUNCTION ]
-Builder:GetTheme(): {[string] = Color3})
+Builder:GetTheme(): {[string] = Color3}
 the internal "THEME" table that is used when creating the UI
 setting themes like GetTheme().Text = Color3.new(...) any new elements will have that color
 alltho DarkBuilder:GetGui() is recommended
