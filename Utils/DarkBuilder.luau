@@ -25,11 +25,11 @@ text: is the text that would be applied to the button
 callback: the function that is called when buttin is pressed
 
 [ PROPERTY ]
-builder.MainGui :: ScreenGui
+Builder.MainGui :: ScreenGui
 returns the ScreenGui of the UI (allow you to add extra customizations)
 
 [ PROPERTY ]
-builder.Bubble :: TextLabel
+Builder.Bubble :: TextLabel
 the bubble that is used for the minimized mode of the UI
 (btw to minimize tap/click anywhere on the UI outside the place that has the elements like title to minimize the UI)
 
@@ -396,8 +396,8 @@ function Builder:SetTitle(text, color)
 	end
 end
 
-builder.MainGui = ScreenGui
-builder.Bubble = Bubble
+Builder.MainGui = ScreenGui
+Builder.Bubble = Bubble
 
 Builder.Storage = Storage
 Builder.Version = "1.1.0"
