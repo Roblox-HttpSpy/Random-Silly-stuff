@@ -1,116 +1,191 @@
+--!optimize 2
+
 --[[
 	made by: Roblox-HttpSpy
 	
 ==== DOCUMENTATION ====
 
+[ FUNCTION ]
 DarkBuilder:CreateSwitch(
 	text: string,
 	defaultState: boolean,
 	callback: (boolean)->(any?)
 )
 creates a UI Switch
-text is the text that would be applied
-defaultState is if the switch should be on by default or not.
-callback is the function that is called when the switch is triggered. and the function is called with a boolean (true if on - false if off)
+text: is the text that would be applied
+defaultState: is if the switch should be on by default or not.
+callback: is the function that is called when the switch is triggered. and the function is called with a boolean (true if on - false if off)
 
+[ FUNCTION ]
 Builder:CreateButton(
 	text: string,
 	callback: ()->(any?)
 )
-text is the text that would be applied to the button
-callback the function that is called when buttin is pressed
+text: is the text that would be applied to the button
+callback: the function that is called when buttin is pressed
 
-DarkBuilder:GetGui(): ScreenGui
+[ PROPERTY ]
+builder.MainGui :: ScreenGui
 returns the ScreenGui of the UI (allow you to add extra customizations)
 
-DarkBuilder:SetTitle(text: string)
-sets the title of the UI
+[ PROPERTY ]
+builder.Bubble :: TextLabel
+the bubble that is used for the minimized mode of the UI
+(btw to minimize tap/click anywhere on the UI outside the place that has the elements like title to minimize the UI)
 
-DarkBuilder.Version: string
+[ FUNCTION ]
+Builder:GetTheme(): {[string] = Color3})
+the internal "THEME" table that is used when creating the UI
+setting themes like GetTheme().Text = Color3.new(...) any new elements will have that color
+alltho DarkBuilder:GetGui() is recommended
+
+[ FUNCTION ]
+DarkBuilder:SetTitle(text: string, color: Color3?)
+text: sets the title of the UI
+color: is the title color. can be left empty for the default (white)
+
+[ PROPERTY ]
+DarkBuilder.Version :: string
 a property of the current version of DarkBuilder
 
-==== TEMPLATE'S ====
+[ PROPERTY ]
+Builder.Storage :: Folder
+DarkBuilder adds a empty folder inside the ScreenGui each time the UILib is loaded
+feel free to use it as a cache folder like storing custom sounds for clicks and ect.
 
-DarkBuilder:SetTitle("OP CHEATS")
-DarkBuilder:CreateSwitch("Infinite Jump", false, function(state)
-	print("Infinite Jump toggled:", state)
+==== TEMPLATE EXAMPLE ====
+> > > > > > > > > > > > > > > > > > > > 
+
+--// uilib
+local Loader, err = loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/Utils/DarkBuilder.luau"), "DarkUILib_Loader")
+
+local success, DarkBuilder = pcall(Loader)
+if not Loader then
+	return error("couldn't load DarkBuilder.. reason: "..tostring(err), 0)
+elseif not success then
+	return error("couldn't run DarkBuilder.. reason: "..tostring(DarkBuilder), 0)
+end
+
+--// script
+local Player = game:GetService("Players").LocalPlayer
+local huge = math.huge
+
+local function sethumanoidprop(state, prop, old, new)
+	if Player.Character then
+		local humanoid = Player.Character:WaitForChild("Humanoid", 300)
+		if state then
+			humanoid[prop] = new
+			return
+		end
+		humanoid[prop] = old
+	end
+end
+
+-- DarkBuilder:SetTitle("Cheats")
+
+DarkBuilder:CreateSwitch("Super Speed", false, function(state)
+	sethumanoidprop(state, "WalkSpeed", 16, 200)
 end)
 
-DarkBuilder:CreateSwitch("Show Hitboxes", false, function(state)
-	print("Hitboxes toggled:", state)
+DarkBuilder:CreateSwitch("Super Jump", false, function(state)
+	sethumanoidprop(state, "JumpPower",  50, 500)
 end)
 
-DarkBuilder:CreateButton("TELEPORT TO SPAWN", function()
-	print("Teleport button clicked")
+DarkBuilder:CreateSwitch("INF Health", false, function(state)
+	sethumanoidprop(state, "Health", 100, huge)
 end)
 
-==== HOW TO LOAD UILIB ====
-local DarkBuilder = loadstring(game:HttpGet("https://raw.githubusercontent.com/Roblox-HttpSpy/Random-Silly-stuff/refs/heads/main/Utils/DarkBuilder.luau"))()
-DarkBuilder:CreateSwitch("example", false, function(state)
-	print(state)
+DarkBuilder:CreateButton("Reset", function()
+	sethumanoidprop(true, "Health", 0, 0)
 end)
+
+DarkBuilder:CreateButton("Sit", function()
+	sethumanoidprop(true, "Sit", true, true)
+end)
+
+< < < < < < < < < < < < < < < < < < < < 
 ]]--
-local is_exploit_env = true
-if debug.setsafeenv then --// if showhow your executor supports this should set the script to a safeenv allowing the luau complier todo advanced optimizations
-	debug.setsafeenv(coroutine.running(), true)
+
+local good_exploit_env = true
+local ref = cloneref
+if debug.setsafeenv then --// if showhow your executor supports this (i think potassium only has this idk) it should set the script to a safeenv allowing the luau complier todo advanced optimizations
+	pcall(debug.setsafeenv, coroutine.running(), true)
 end
-if not identifyexecutor then --// like in studio (why?)
-	is_exploit_env = false
+if not game:GetService("CoreGui") then --// like in studio (why?)
+	good_exploit_env = false
+end
+local function reference(obj)
+	if ref then
+		return ref(obj)
+	end
+	return obj
 end
 
-local TweenService = game:GetService("TweenService")
+local TweenService = reference(game:GetService("TweenService"))
+local UIS = reference(game:GetService("UserInputService"))
 local CoreGui
-if (is_exploit_env and gethui) then
+if (good_exploit_env and gethui) then
 	CoreGui = gethui()
-elseif is_exploit_env then
-	CoreGui = game:GetService("CoreGui")
+elseif good_exploit_env then
+	CoreGui = game:FindService("CoreGui") --// no point of using cloneref since devs can't no longer reference this service
 else
-	CoreGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui", 300)
+	CoreGui = reference(game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui", 300)) --// should never happen (unless your in studio or something.. why)
 end
 
-local THEME = table.freeze({
-	Background = Color3.fromRGB(20, 20, 20),
-	SecondaryBackground = Color3.fromRGB(30, 30, 30),
-	ElementBackground = Color3.fromRGB(45, 45, 45),
-	AccentBlue = Color3.fromRGB(0, 130, 255),
-	Text = Color3.fromRGB(255, 255, 255),
-	TextDark = Color3.fromRGB(200, 200, 200)
-})
-local FONT = Enum.Font.BuilderSansExtraBold
-
-if CoreGui:FindFirstChild("DarkUI") then
-	CoreGui.DarkUI:Destroy()
+if CoreGui:FindFirstChild("DarkUILib - By: Roblox-HttpSpy") then
+	CoreGui["DarkUILib - By: Roblox-HttpSpy"]:Destroy()
 end
 
-local ScreenGui = Instance.new("ScreenGui", CoreGui)
-ScreenGui.Name = "DarkUI"
+--// Builder:GetTheme() //--
+local rgb = Color3.fromRGB
+local THEME = {
+	Background = rgb(20, 20, 20),
+	SecondaryBackground = rgb(30, 30, 30),
+	ElementBackground = rgb(45, 45, 45),
+	AccentBlue = rgb(0, 130, 255),
+	Text = rgb(255, 255, 255),
+	TextDark = rgb(200, 200, 200)
+}
+local Enums = Enum
+local FONT = Font.fromEnum(Enums.Font.BuilderSansExtraBold)
+
+local inew, safecall = Instance.new, pcall
+local UD, UD2, fromScale = UDim.new, UDim2.new, UDim2.fromScale
+local V2 = Vector2.new
+local tween1, tween2 = TweenInfo.new(0.1), TweenInfo.new(0.2)
+
+local ScreenGui = inew("ScreenGui", CoreGui)
+ScreenGui.Name = "DarkUILib - By: Roblox-HttpSpy"
 ScreenGui.ResetOnSpawn = false
 ScreenGui.IgnoreGuiInset = true
 
-local BoundingFrame = Instance.new("Frame", ScreenGui)
+local Storage = inew("Folder", ScreenGui)
+Storage.Name = "Storage"
+
+local BoundingFrame = inew("Frame", ScreenGui)
 BoundingFrame.Name = "BoundingFrame"
-BoundingFrame.Size = UDim2.fromScale(1, 1)
+BoundingFrame.Size = fromScale(1, 1)
 BoundingFrame.BackgroundTransparency = 1
 
-local MainFrame = Instance.new("Frame", ScreenGui)
+local MainFrame = inew("Frame", ScreenGui)
 MainFrame.Name = "MainWindow"
 MainFrame.BackgroundColor3 = THEME.Background
-MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-MainFrame.Position = UDim2.fromScale(0.5, 0.5)
-MainFrame.Size = UDim2.fromScale(0.35, 0.45)
+MainFrame.AnchorPoint = V2(0.5, 0.5)
+MainFrame.Position = fromScale(0.5, 0.5)
+MainFrame.Size = fromScale(0.35, 0.45)
 MainFrame.BorderSizePixel = 0
 
-local Bubble = Instance.new("TextLabel", ScreenGui)
+local Bubble = inew("TextLabel", ScreenGui)
 Bubble.Name = "Bubble"
-Bubble.Size = UDim2.new(0, 70, 0, 70)
+Bubble.Size = UD2(0, 70, 0, 70)
 Bubble.Position = MainFrame.Position
 Bubble.BackgroundColor3 = THEME.Background
 Bubble.TextColor3 = THEME.Text
 Bubble.RichText = true
 Bubble.Text = "<font size='28' weight='700' family='rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json'>lightning-bolt</font>"
-Bubble.Font = FONT
+Bubble.FontFace = FONT
 Bubble.Visible = false
-Instance.new("UICorner", Bubble)
+inew("UICorner", Bubble)
 
 local Dragging = false
 local function SetDrag(UIDragger, DragEnd)
@@ -124,8 +199,8 @@ local function SetDrag(UIDragger, DragEnd)
 	end)
 end
 
-local MainFrameDrag = Instance.new("UIDragDetector", MainFrame)
-local BubbleDrag = Instance.new("UIDragDetector", Bubble)
+local MainFrameDrag = inew("UIDragDetector", MainFrame)
+local BubbleDrag = inew("UIDragDetector", Bubble)
 
 SetDrag(MainFrameDrag, function()
 	if Dragging then
@@ -141,174 +216,190 @@ SetDrag(BubbleDrag, function()
 	end
 end)
 
-local SizeConstraint = Instance.new("UISizeConstraint", MainFrame)
-SizeConstraint.MinSize = Vector2.new(100, 100)
-SizeConstraint.MaxSize = Vector2.new(600, 700)
+local SizeConstraint = inew("UISizeConstraint", MainFrame)
+SizeConstraint.MinSize = V2(100, 100)
+SizeConstraint.MaxSize = V2(600, 700)
 
-local AspectRatio = Instance.new("UIAspectRatioConstraint", MainFrame)
+local AspectRatio = inew("UIAspectRatioConstraint", MainFrame)
 AspectRatio.AspectRatio = 0.857 
-AspectRatio.AspectType = Enum.AspectType.ScaleWithParentSize
-AspectRatio.DominantAxis = Enum.DominantAxis.Width
+AspectRatio.AspectType = Enums.AspectType.ScaleWithParentSize
+AspectRatio.DominantAxis = Enums.DominantAxis.Width
 
-local MainCorner = Instance.new("UICorner", MainFrame)
-MainCorner.CornerRadius = UDim.new(0, 12)
+local MainCorner = inew("UICorner", MainFrame)
+MainCorner.CornerRadius = UD(0, 12)
 
-local Shadow = Instance.new("UIShadow", MainFrame)
-Shadow.BlurRadius = UDim.new(0, 15)
+local Shadow = inew("UIShadow", MainFrame)
+Shadow.BlurRadius = UD(0, 25)
 Shadow.Color = THEME.Background
 
-local BubbleShadow = Instance.new("UIShadow", Bubble)
-BubbleShadow.BlurRadius = UDim.new(0, 15)
+local BubbleShadow = inew("UIShadow", Bubble)
+BubbleShadow.BlurRadius = UD(0, 25)
 BubbleShadow.Color = THEME.Background
 
-local BubbleStroke = Instance.new("UIStroke", Bubble)
+local BubbleStroke = inew("UIStroke", Bubble)
 BubbleStroke.Color = THEME.Text
 BubbleStroke.Transparency = 0.5
 BubbleStroke.Thickness = 4
-BubbleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+BubbleStroke.ApplyStrokeMode = Enums.ApplyStrokeMode.Border
 
-local TitleLabel = Instance.new("TextLabel", MainFrame)
+local TitleLabel = inew("TextLabel", MainFrame)
 TitleLabel.Name = "Title"
-TitleLabel.Size = UDim2.new(1, 0, 0, 50)
+TitleLabel.Size = UD2(1, 0, 0, 50)
 TitleLabel.BackgroundTransparency = 1
 TitleLabel.Text = "DarkCheats"
-TitleLabel.Font = FONT
+TitleLabel.FontFace = FONT
 TitleLabel.TextSize = 24
 TitleLabel.TextColor3 = THEME.Text
 
-local Divider = Instance.new("Frame", MainFrame)
-Divider.Size = UDim2.new(1, 0, 0, 2)
-Divider.Position = UDim2.new(0, 0, 0, 50)
+local Divider = inew("Frame", MainFrame)
+Divider.Size = UD2(1, 0, 0, 2)
+Divider.Position = UD2(0, 0, 0, 50)
 Divider.BackgroundColor3 = THEME.SecondaryBackground
 Divider.BorderSizePixel = 0
 
-local Content = Instance.new("ScrollingFrame", MainFrame)
+local Content = inew("ScrollingFrame", MainFrame)
 Content.Name = "Content"
-Content.Size = UDim2.new(1, -20, 1, -65)
-Content.Position = UDim2.new(0, 10, 0, 55)
+Content.Size = UD2(1, -20, 1, -65)
+Content.Position = UD2(0, 10, 0, 55)
 Content.BackgroundTransparency = 1
 Content.ScrollBarThickness = 4
 Content.ScrollBarImageColor3 = THEME.ElementBackground
 Content.BorderSizePixel = 0
-Content.CanvasSize = UDim2.new(0, 0, 0, 0)
-Content.AutomaticCanvasSize = Enum.AutomaticSize.Y
+Content.CanvasSize = UD2(0, 0, 0, 0)
+Content.AutomaticCanvasSize = Enums.AutomaticSize.Y
 
-local ContentLayout = Instance.new("UIListLayout", Content)
-ContentLayout.SortOrder = Enum.SortOrder.LayoutOrder
-ContentLayout.Padding = UDim.new(0, 12)
+local ContentLayout = inew("UIListLayout", Content)
+ContentLayout.SortOrder = Enums.SortOrder.LayoutOrder
+ContentLayout.Padding = UD(0, 12)
 
-local ContentPadding = Instance.new("UIPadding", Content)
-ContentPadding.PaddingTop = UDim.new(0, 10)
-ContentPadding.PaddingBottom = UDim.new(0, 10)
-ContentPadding.PaddingLeft = UDim.new(0, 10)
-ContentPadding.PaddingRight = UDim.new(0, 10)
+local ContentPadding = inew("UIPadding", Content)
+ContentPadding.PaddingTop = UD(0, 10)
+ContentPadding.PaddingBottom = UD(0, 10)
+ContentPadding.PaddingLeft = UD(0, 10)
+ContentPadding.PaddingRight = UD(0, 10)
 
 local Builder = {}
 function Builder:CreateButton(text, callback)
-	local Button = Instance.new("TextButton", Content)
-	Button.Size = UDim2.new(1, 0, 0, 50)
+	local Button = inew("TextButton", Content)
+	Button.Size = UD2(1, 0, 0, 50)
 	Button.BackgroundColor3 = THEME.SecondaryBackground
 	Button.Text = text
-	Button.Font = FONT
+	Button.FontFace = FONT
 	Button.TextSize = 18
 	Button.TextColor3 = THEME.Text
 	Button.AutoButtonColor = false
 	Button.BorderSizePixel = 0
 	
-	local Corner = Instance.new("UICorner", Button)
-	Corner.CornerRadius = UDim.new(0, 8)
+	inew("UICorner", Button).CornerRadius = UD(0, 8)
 	
 	Button.MouseEnter:Connect(function()
-		TweenService:Create(Button, TweenInfo.new(0.2), {BackgroundColor3 = THEME.ElementBackground}):Play()
+		TweenService:Create(Button, tween2, {BackgroundColor3 = THEME.ElementBackground}):Play()
 	end)
 	
 	Button.MouseLeave:Connect(function()
-		TweenService:Create(Button, TweenInfo.new(0.2), {BackgroundColor3 = THEME.SecondaryBackground}):Play()
+		TweenService:Create(Button, tween2, {BackgroundColor3 = THEME.SecondaryBackground}):Play()
 	end)
 	
-	Button.MouseButton1Click:Connect(function()
-		local ClickTween = TweenService:Create(Button, TweenInfo.new(0.1), {BackgroundColor3 = THEME.AccentBlue})
+	Button.Activated:Connect(function()
+		local ClickTween = TweenService:Create(Button, tween1, {BackgroundColor3 = THEME.AccentBlue})
 		ClickTween:Play()
 		ClickTween.Completed:Wait()
-		TweenService:Create(Button, TweenInfo.new(0.2), {BackgroundColor3 = THEME.ElementBackground}):Play()
 		
-		if callback then callback() end
+		local isTouch = UIS:GetLastInputType() == Enums.UserInputType.Touch
+		local targetColor = isTouch and THEME.SecondaryBackground or THEME.ElementBackground
+		TweenService:Create(Button, tween2, {BackgroundColor3 = targetColor}):Play()
+		
+		if callback then
+			local bool, err = safecall(callback)
+			if not bool then
+				return error(err, 2)
+			end
+		end
 	end)
 	
 	return Button
 end
 
 function Builder:CreateSwitch(text, defaultState, callback)
-	local SwitchContainer = Instance.new("Frame", Content)
-	SwitchContainer.Size = UDim2.new(1, 0, 0, 50)
+	local SwitchContainer = inew("Frame", Content)
+	SwitchContainer.Size = UD2(1, 0, 0, 50)
 	SwitchContainer.BackgroundColor3 = THEME.SecondaryBackground
 	SwitchContainer.BorderSizePixel = 0
 	
-	local ContainerCorner = Instance.new("UICorner", SwitchContainer)
-	ContainerCorner.CornerRadius = UDim.new(0, 8)
+	inew("UICorner", SwitchContainer).CornerRadius = UD(0, 8)
 	
-	local Label = Instance.new("TextLabel", SwitchContainer)
-	Label.Size = UDim2.new(1, -80, 1, 0)
-	Label.Position = UDim2.new(0, 15, 0, 0)
+	local Label = inew("TextLabel", SwitchContainer)
+	Label.Size = UD2(1, -80, 1, 0)
+	Label.Position = UD2(0, 15, 0, 0)
 	Label.BackgroundTransparency = 1
 	Label.Text = text
-	Label.Font = FONT
+	Label.FontFace = FONT
 	Label.TextSize = 18
 	Label.TextColor3 = THEME.Text
-	Label.TextXAlignment = Enum.TextXAlignment.Left
+	Label.TextXAlignment = Enums.TextXAlignment.Left
 	
-	local SwitchBase = Instance.new("TextButton", SwitchContainer)
-	SwitchBase.Size = UDim2.new(0, 50, 0, 26)
-	SwitchBase.AnchorPoint = Vector2.new(1, 0.5)
-	SwitchBase.Position = UDim2.new(1, -15, 0.5, 0)
+	local SwitchBase = inew("TextButton", SwitchContainer)
+	SwitchBase.Size = UD2(0, 50, 0, 26)
+	SwitchBase.AnchorPoint = V2(1, 0.5)
+	SwitchBase.Position = UD2(1, -15, 0.5, 0)
 	SwitchBase.BackgroundColor3 = THEME.ElementBackground
 	SwitchBase.Text = ""
 	SwitchBase.AutoButtonColor = false
 	
-	local SwitchCorner = Instance.new("UICorner", SwitchBase)
-	SwitchCorner.CornerRadius = UDim.new(1, 0)
+	inew("UICorner", SwitchBase).CornerRadius = UD(1, 0)
 	
-	local Knob = Instance.new("Frame", SwitchBase)
-	Knob.Size = UDim2.new(0, 20, 0, 20)
-	Knob.AnchorPoint = Vector2.new(0, 0.5)
+	local Knob = inew("Frame", SwitchBase)
+	Knob.Size = UD2(0, 20, 0, 20)
+	Knob.AnchorPoint = V2(0, 0.5)
 	Knob.BackgroundColor3 = THEME.Text
 	
-	local KnobCorner = Instance.new("UICorner", Knob)
-	KnobCorner.CornerRadius = UDim.new(1, 0)
+	local KnobCorner = inew("UICorner", Knob)
+	KnobCorner.CornerRadius = UD(1, 0)
 	
 	local isToggled = defaultState or false
 	
 	local function UpdateSwitch(animated)
 		local targetColor = isToggled and THEME.AccentBlue or THEME.ElementBackground
-		local targetPos = isToggled and UDim2.new(1, -23, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-		
+		local targetPos = isToggled and UD2(1, -23, 0.5, 0) or UD2(0, 3, 0.5, 0)
 		if animated then
-			TweenService:Create(SwitchBase, TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {BackgroundColor3 = targetColor}):Play()
-			TweenService:Create(Knob, TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {Position = targetPos}):Play()
+			TweenService:Create(SwitchBase, tween2, {BackgroundColor3 = targetColor}):Play()
+			TweenService:Create(Knob, tween2, {Position = targetPos}):Play()
 		else
 			SwitchBase.BackgroundColor3 = targetColor
 			Knob.Position = targetPos
 		end
 	end
 	
-	SwitchBase.MouseButton1Click:Connect(function()
+	SwitchBase.Activated:Connect(function()
 		isToggled = not isToggled
 		UpdateSwitch(true)
-		if callback then callback(isToggled) end
+		if callback then
+			local bool, err = safecall(callback, isToggled)
+			if not bool then
+				return error(err, 2)
+			end
+		end
 	end)
 	
 	UpdateSwitch(false)
 	return SwitchContainer
 end
 
-function Builder:GetGui()
-	return ScreenGui
+function Builder:GetTheme()
+	return THEME
 end
 
-function Builder:SetTitle(text)
+function Builder:SetTitle(text, color)
 	TitleLabel.Text = text
+	if color then
+		TitleLabel.TextColor3 = color
+	end
 end
 
-Builder.Version = "1.0.0"
+builder.MainGui = ScreenGui
+builder.Bubble = Bubble
+
+Builder.Storage = Storage
+Builder.Version = "1.1.0"
 
 return table.freeze(Builder)
