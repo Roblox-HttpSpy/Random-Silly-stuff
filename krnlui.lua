@@ -1,3 +1,4 @@
+-- sadly doesn't work anymore
 local CoreGui, hui = game:GetService("CoreGui"), gethui()
 local StarterGui = game:GetService("StarterGui")
 local CorePackages = game:GetService("CorePackages")
