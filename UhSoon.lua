@@ -1,4 +1,4 @@
-print("Soon... jk its never")
+print("Soon...")
 --[[
 just ignore this
 ]]--
