@@ -20,12 +20,11 @@ end
 
 local players = service("Players")
 local run_service = service("RunService")
-local user_input_service = service("UserInputService")
 local workspace = service("Workspace")
 local huge, cframe, raycast = math.huge, CFrame.new, RaycastParams.new
 
 local local_player = players.LocalPlayer
-local camera = workspace.CurrentCamera
+local camera = reference(workspace.CurrentCamera)
 
 local function are_on_same_team(player1, player2)
 	return player1.Team ~= nil
